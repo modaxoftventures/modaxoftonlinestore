@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Booking</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .service {
+            margin-bottom: 20px;
+            border: 1px solid #ddd; /* Light border for services */
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .service h2 {
+            margin-top: 0; /* Remove default top margin for h2 */
+        }
+
+        .service p {
+            margin-bottom: 10px;
+        }
+
+        .booking-link {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .booking-link:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Responsive adjustments (example) */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Our Services</h1>
+
+        <div class="service">
+            <h2>Service 1: Consultation</h2>
+            <p>Description of Service 1.  Provide details about what this service includes, its duration, and any other relevant information.</p>
+            <a href="https://wa.me/YOUR_PHONE_NUMBER?text=I'd like to book a consultation." class="booking-link" target="_blank">Book Now</a>
+        </div>
+
+        <div class="service">
+            <h2>Service 2: Training</h2>
+            <p>Description of Service 2. Provide details about what this service includes, its duration, and any other relevant information.</p>
+            <a href="https://wa.me/YOUR_PHONE_NUMBER?text=I'd like to book training." class="booking-link" target="_blank">Book Now</a>
+        </div>
+
+        <div class="service">
+            <h2>Service 3: Development</h2>
+            <p>Description of Service 3. Provide details about what this service includes, its duration, and any other relevant information.</p>
+            <a href="https://wa.me/YOUR_PHONE_NUMBER?text=I'd like to book development services." class="booking-link" target="_blank">Book Now</a>
+        </div>
+
+        </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="index.html">Home</a>
+  <a href="Cart.html" >Cart <span class="cart-badge" id="cart-count" style="color:red";>0</span> </a>
+  <a href="checkout.html">Checkout</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="main">
+  
+</body>
+
+</html>
+
+<script src="cart.js"></script>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="header">
+        <h1 style="font-size:300%;">Modaxoft Ventures Online Shop   </h1>
+        
+    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Sale</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+
+        .flash-sale-container {
+            width: 100%; /* Full width */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-slider {
+            width: 400%; /* 4 images * 100% */
+            transition: transform 0.3s linear;
+            display: flex;
+        }
+
+        .slide {
+            width: 25%; /* Each image takes 1/4 of the slider width */
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block; /* Prevents small space below image */
+        }
+
+        .timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            pointer-events: none; /* So clicks pass through to the slider */
+        }
+
+        .nav-arrow {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto; /* Make arrows clickable */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flash-sale-container">
+        <div class="image-slider" id="slider">
+            <div class="slide"><img src="https://tpc.googlesyndication.com/simgad/160241176591721388" alt="Product 1"></div>
+
+            <div class="slide"><img src="https://ke.jumia.is/cms/2025/W07/SIS/sis.jpg" alt="Product 2"></div>
+
+            <div class="slide"><img src="https://tpc.googlesyndication.com/simgad/11408952275927555138" alt="Product 3"></div>  </div>
+			
+        </div>
+        <div class="timer" id="countdown"></div>
+        <div class="nav-arrows">
+            <div class="nav-arrow" onclick="prevSlide()">&#10094;</div>
+            <div class="nav-arrow" onclick="nextSlide()">&#10095;</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slider = document.getElementById('slider');
+        const countdownDisplay = document.getElementById('countdown');
+        let timerInterval;
+
+        // ... (countdown timer code remains the same) ...
+
+        function showSlide(n) {
+            slider.style.transform = `translateX(-${n * 25}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            if (currentSlide >= 3) {
+                currentSlide = 0;
+                setTimeout(() => {
+                    slider.style.transition = 'none';
+                    showSlide(currentSlide);
+                    slider.style.transition = 'transform 0.3s linear';
+                }, 300);
+            }
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            if (currentSlide < 0) {
+                currentSlide = 2;
+                setTimeout(() => {
+                    slider.style.transition = 'none';
+                    showSlide(currentSlide);
+                    slider.style.transition = 'transform 0.3s linear';
+                }, 300);
+            }
+            showSlide(currentSlide);
+        }
+
+        // ... (rest of the JavaScript code remains the same) ...
+
+        // Automatic sliding (for continuous loop)
+        setInterval(nextSlide, 2000); // Adjust speed as needed
+
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Products Shop</title> 
+    <style>
+        body {
+		    
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: pink;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-around;
+            margin: 20px;
+        }
+        .product-card {
+            width: 30%;
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto%;
+            border-radius: 8px;
+        }
+        .product-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .product-card button:hover {
+            background-color: #45a049;
+        }
+  
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="index.html">Home</a>
+  <a href="Cart.html" >Cart <span class="cart-badge" id="cart-count" style="color:red";>0</span> </a>
+  <a href="checkout.html">Checkout</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="main">
+
+
+<body>
+    
+
+    <div class="products-container">
+        <article class="product-card">
+            <h3>Night Cream</h3>
+            <img src="https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/8066962/1.jpg?0214" alt="Face Cream">
+            <p>Price: KES 599</p>
+            <button onclick="addToCart('Night Cream', 599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Hair/Beard Treamer</h3>
+            <img src="https://i.pinimg.com/474x/10/75/b1/1075b1cefdf9fb53274cd507320f92c5.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Hair/Beard Treamer', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Strengthening Shampoo</h3>
+            <img src="data:image/jpeg;base64,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" alt="Strengthening Shampoo">
+            <p>Price: KES 300</p>
+            <button onclick="addToCart('Strengthening Shampoo', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/6f/1b/dd/6f1bddabc6f83983d0272851664a19fb.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/a1/64/df/a164df4cc189f09fc82d01f7b4c1e592.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/64/d8/4f/64d84ff1a94ad2f52cf09863cfc019f0.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/13/14/6c/13146c62bf5a9b75a9c2fe21cc90635c.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/aa/50/2e/aa502e1db1c2ad038c835d9238cdf612.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/09/2a/ff/092aff62be1ae73d697a3bc5f9612851.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+		<article class="product-card">
+            <h3>Face Cream</h3>
+            <img src="https://i.pinimg.com/236x/bf/74/d5/bf74d5d27c054c4aedd8c6492b279379.jpg" alt="Face Cream">
+            <p>Price: KES 2,599</p>
+            <button onclick="addToCart('Face Cream', 2599)">Add to Cart</button>
+        </article>
+        <article class="product-card">
+            <h3>Shampoo</h3>
+            <img src="https://i.pinimg.com/236x/0b/92/3c/0b923c65e285a0b7835f3a04e851d1f8.jpg" alt="Shampoo">
+            <p>Price: KES 1,599</p>
+            <button onclick="addToCart('Shampoo', 1599)">Add to Cart</button>
+        </article>
+        <article class="product-card">
+            <h3>Lipstick</h3>
+            <img src="https://i.pinimg.com/236x/f1/c8/99/f1c8990cf334fe8ed98b8ebee452dcad.jpg" alt="Lipstick">
+            <p>Price: KES 1,099</p>
+            <button onclick="addToCart('Lipstick', 1099)">Add to Cart</button>
+        </article>
+    </div>
+
+    <script>
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+
+
+
+
+  
+</body>
+
+</html> 
+
+
+
+<script src="cart.js"></script>

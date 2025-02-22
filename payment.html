@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #f0f0f0, #ffffff); /* Subtle gradient background */
+            color: #333; /* Darker text color */
+        }
+
+        .payment-container {
+            width: 90%;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c3e50; /* Darker heading color */
+        }
+
+        .payment-card {
+            margin-bottom: 30px;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500; /* Slightly bolder labels */
+        }
+
+        .payment-form input[type="text"],
+        .payment-form input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7; /* Lighter border color */
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px; /* Larger font size for inputs */
+            transition: border-color 0.3s ease; /* Smooth transition for border color */
+        }
+
+        .payment-form input:focus {
+            border-color: #3498db; /* Blue border on focus */
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.2); /* Subtle blue shadow on focus */
+        }
+
+        .payment-form .col-50 {
+            width: 50%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .payment-form .col-50:first-child {
+            padding-left: 0;
+        }
+
+        .payment-form .col-50:last-child {
+            padding-right: 0;
+        }
+
+        .payment-form .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .card-icons {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .card-icons img {
+            width: 60px;
+            height: auto;
+            margin: 0 10px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); /* Subtle shadow on icons */
+        }
+
+        .payment-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 14px 30px;
+            background-color: #3498db; /* Blue button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow on button */
+        }
+
+        .payment-btn:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        .receipt {
+            margin-top: 30px;
+            border: 1px solid #eee; /* Very light border */
+            padding: 25px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Very subtle shadow on receipt */
+        }
+
+        .receipt h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .receipt-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .receipt-total {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .payment-form .col-50 {
+                width: 100%; /* Stack columns on smaller screens */
+                padding: 0;
+            }
+
+            .payment-form .row {
+                margin: 0; /* Remove margin */
+            }
+
+            .payment-card, .receipt {
+                padding: 20px; /* Adjust padding */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="payment-container">       
+    <div class="payment-container">
+        <div class="payment-card">
+            <div class="header">
+                <h1>Securely Pay for your Order</h1>
+            </div>
+<div class="receipt">
+            <h2>Here is Your Order Summary</h2>
+            <div class="receipt-summary">
+                <span>Total:</span>
+                <span class="receipt-total" id="receipt-total">KES 0.00</span>
+            </div>
+        </div>
+    </div>
+
+
+
+            <div class="payment-form">
+                <form id="paymentForm">
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="cardholder"><i class="fas fa-user"></i> Cardholder Name:</label>
+                            <input type="text" id="cardholder" name="cardholder" placeholder="Enter cardholder name" required>
+
+                            <label for="cardnumber"><i class="fas fa-credit-card"></i> Card Number:</label>
+                            <input type="text" id="cardnumber" name="cardnumber" placeholder="Enter card number" required>
+
+                            <label for="expmonth"><i class="far fa-calendar-alt"></i> Expiry Month:</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="MM" required>
+                        </div>
+                        <div class="col-50">
+                            <label for="expyear"><i class="far fa-calendar-alt"></i> Expiry Year:</label>
+                            <input type="text" id="expyear" name="expyear" placeholder="YYYY" required>
+
+                            <label for="cvv"><i class="fas fa-lock"></i> CVV:</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+                            <label for="amount"><i class="fas fa-money-bill-wave"></i> Amount:</label>
+                            <input type="number" id="amount" name="amount" readonly>
+                        </div>
+                    </div>
+
+                    <div class="card-icons">
+                        <img src="https://i.pinimg.com/474x/c1/f5/93/c1f5931779e7f7c72ea6504212ba5ddc.jpg" alt="Visa">
+                        <img src="https://i.pinimg.com/474x/80/e3/19/80e3197d3170890305287ad746521149.jpg" alt="Mastercard">
+                        <img src="https://i.pinimg.com/474x/bf/52/b8/bf52b87c9c500e5502da41ccb04c9ef1.jpg" alt="Amex">
+						<img src="https://khusoko.com/wp-content/uploads/2022/06/M-Pesa-GlobalPay.jpg" alt="mpesa">
+                    </div>
+
+                    <button type="submit" class="payment-btn">Pay Now</button>
+                </form>
+            </div>
+        </div>
+
+        
+
+    <script>
+        // Get the amount from the URL parameter (same as before)
+        const urlParams = new URLSearchParams(window.location.search);
+        const amountFromURL = urlParams.get('amount');
+
+        // Set the amount in the payment form (same as before)
+        document.getElementById('amount').value = amountFromURL;
+
+        // Function to calculate and update the total from localStorage cart
+        function updateTotalFromCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let total = 0;
+
+            cart.forEach(item => {
+                let quantity = item.quantity || 1;
+                total += item.price * quantity;
+            });
+
+            document.getElementById('receipt-total').textContent = "KES " + total.toLocaleString();
+
+            //If the amount is coming from the URL and not from the cart, use that value instead
+            if (amountFromURL) {
+                document.getElementById('receipt-total').textContent = "KES " + amountFromURL;
+            }
+        }
+
+
+        // Update total when the page loads
+        updateTotalFromCart();
+
+        // Update total if the cart changes (you'll need to call this function whenever the cart is updated)
+        // For example, after adding, removing, or updating items in the cart:
+        // localStorage.addEventListener('storage', updateTotalFromCart); //This is not reliable, so use a custom event
+
+        // Custom event to trigger when cart updates
+        const cartUpdatedEvent = new Event('cartUpdated');
+
+        //Example of how to dispatch the event when the cart is updated
+        // localStorage.setItem('cart', JSON.stringify(updatedCart));
+        // window.dispatchEvent(cartUpdatedEvent);
+
+        window.addEventListener('cartUpdated', updateTotalFromCart);
+
+
+        document.getElementById('paymentForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const amount = document.getElementById('receipt-total').textContent.replace('KES ', '').replace(',', ''); // Get the amount from the receipt total
+            alert("Payment of KES " + amount + " processed (example)");
+
+        });
+		// Autofill the amount input field
+const amountElement = document.getElementById('amount');
+const receiptTotalElement = document.getElementById('receipt-total');
+const amount = receiptTotalElement.textContent.replace('KES ', '').replace(',', '');
+amountElement.value = amount; // Set the value of the amount input
+    </script>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="index.html">Home</a>
+  <a href="Cart.html" >Cart <span class="cart-badge" id="cart-count" style="color:red";>0</span> </a>
+  <a href="checkout.html">Checkout</a>
+  <a href="bookings.html">Bookings</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="main">
+  
+</body>
+
+</html> 
+
+
+<script src="cart.js"></script>
